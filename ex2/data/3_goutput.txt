@@ -1,0 +1,353 @@
+CONSTTK const
+INTTK int
+IDENFR sgLA
+ASSIGN =
+MINU -
+INTCON 00390
+<无符号整数>
+<整数>
+<常量定义>
+SEMICN ;
+<常量说明>
+INTTK int
+IDENFR tssvz
+LBRACK [
+INTCON 2
+<无符号整数>
+RBRACK ]
+LBRACK [
+INTCON 3
+<无符号整数>
+RBRACK ]
+ASSIGN =
+LBRACE {
+LBRACE {
+INTCON 1
+<无符号整数>
+<整数>
+<常量>
+COMMA ,
+INTCON 2
+<无符号整数>
+<整数>
+<常量>
+COMMA ,
+INTCON 3
+<无符号整数>
+<整数>
+<常量>
+RBRACE }
+COMMA ,
+LBRACE {
+INTCON 4
+<无符号整数>
+<整数>
+<常量>
+COMMA ,
+INTCON 5
+<无符号整数>
+<整数>
+<常量>
+COMMA ,
+INTCON 6
+<无符号整数>
+<整数>
+<常量>
+RBRACE }
+RBRACE }
+<变量定义及初始化>
+<变量定义>
+SEMICN ;
+CHARTK char
+IDENFR tssvzch
+LBRACK [
+INTCON 2
+<无符号整数>
+RBRACK ]
+LBRACK [
+INTCON 3
+<无符号整数>
+RBRACK ]
+ASSIGN =
+LBRACE {
+LBRACE {
+CHARCON 1
+<常量>
+COMMA ,
+CHARCON p
+<常量>
+COMMA ,
+CHARCON 3
+<常量>
+RBRACE }
+COMMA ,
+LBRACE {
+CHARCON 4
+<常量>
+COMMA ,
+CHARCON u
+<常量>
+COMMA ,
+CHARCON 6
+<常量>
+RBRACE }
+RBRACE }
+<变量定义及初始化>
+<变量定义>
+SEMICN ;
+INTTK int
+IDENFR tessss
+LBRACK [
+INTCON 2
+<无符号整数>
+RBRACK ]
+ASSIGN =
+LBRACE {
+INTCON 1
+<无符号整数>
+<整数>
+<常量>
+COMMA ,
+INTCON 7
+<无符号整数>
+<整数>
+<常量>
+RBRACE }
+<变量定义及初始化>
+<变量定义>
+SEMICN ;
+CHARTK char
+IDENFR tes2tch
+LBRACK [
+INTCON 3
+<无符号整数>
+RBRACK ]
+ASSIGN =
+LBRACE {
+CHARCON 1
+<常量>
+COMMA ,
+CHARCON i
+<常量>
+COMMA ,
+CHARCON p
+<常量>
+RBRACE }
+<变量定义及初始化>
+<变量定义>
+SEMICN ;
+INTTK int
+IDENFR b
+ASSIGN =
+MINU -
+INTCON 19
+<无符号整数>
+<整数>
+<常量>
+<变量定义及初始化>
+<变量定义>
+SEMICN ;
+CHARTK char
+IDENFR c
+ASSIGN =
+CHARCON c
+<常量>
+<变量定义及初始化>
+<变量定义>
+SEMICN ;
+<变量说明>
+VOIDTK void
+MAINTK main
+LPARENT (
+RPARENT )
+LBRACE {
+CONSTTK const
+INTTK int
+IDENFR tarr
+ASSIGN =
+INTCON 99
+<无符号整数>
+<整数>
+<常量定义>
+SEMICN ;
+CONSTTK const
+CHARTK char
+IDENFR tch
+ASSIGN =
+CHARCON /
+COMMA ,
+IDENFR hhhh
+ASSIGN =
+CHARCON h
+<常量定义>
+SEMICN ;
+<常量说明>
+IDENFR tssvzch
+LBRACK [
+INTCON 1
+<无符号整数>
+<整数>
+<因子>
+<项>
+<表达式>
+RBRACK ]
+LBRACK [
+INTCON 0
+<无符号整数>
+<整数>
+<因子>
+<项>
+<表达式>
+RBRACK ]
+ASSIGN =
+CHARCON k
+<因子>
+<项>
+<表达式>
+<赋值语句>
+SEMICN ;
+<语句>
+IDENFR tssvzch
+LBRACK [
+INTCON 1
+<无符号整数>
+<整数>
+<因子>
+<项>
+<表达式>
+RBRACK ]
+LBRACK [
+PLUS +
+PLUS +
+INTCON 1
+<无符号整数>
+<整数>
+<因子>
+<项>
+<表达式>
+RBRACK ]
+ASSIGN =
+IDENFR tch
+<因子>
+<项>
+<表达式>
+<赋值语句>
+SEMICN ;
+<语句>
+IDENFR tssvzch
+LBRACK [
+INTCON 1
+<无符号整数>
+<整数>
+<因子>
+<项>
+<表达式>
+RBRACK ]
+LBRACK [
+INTCON 2
+<无符号整数>
+<整数>
+<因子>
+<项>
+<表达式>
+RBRACK ]
+ASSIGN =
+CHARCON -
+<因子>
+<项>
+<表达式>
+<赋值语句>
+SEMICN ;
+<语句>
+IDENFR tessss
+LBRACK [
+INTCON 1
+<无符号整数>
+<整数>
+<因子>
+<项>
+<表达式>
+RBRACK ]
+ASSIGN =
+IDENFR tarr
+<因子>
+<项>
+<表达式>
+<赋值语句>
+SEMICN ;
+<语句>
+PRINTFTK printf
+LPARENT (
+IDENFR tssvzch
+LBRACK [
+INTCON 1
+<无符号整数>
+<整数>
+<因子>
+<项>
+<表达式>
+RBRACK ]
+LBRACK [
+INTCON 1
+<无符号整数>
+<整数>
+<因子>
+<项>
+<表达式>
+RBRACK ]
+<因子>
+<项>
+<表达式>
+RPARENT )
+<写语句>
+SEMICN ;
+<语句>
+SEMICN ;
+<语句>
+PRINTFTK printf
+LPARENT (
+IDENFR tessss
+LBRACK [
+INTCON 0
+<无符号整数>
+<整数>
+<因子>
+<项>
+<表达式>
+RBRACK ]
+<因子>
+<项>
+<表达式>
+RPARENT )
+<写语句>
+SEMICN ;
+<语句>
+PRINTFTK printf
+LPARENT (
+IDENFR tessss
+LBRACK [
+MINU -
+MINU -
+INTCON 1
+<无符号整数>
+<整数>
+<因子>
+<项>
+<表达式>
+RBRACK ]
+<因子>
+<项>
+<表达式>
+RPARENT )
+<写语句>
+SEMICN ;
+<语句>
+RETURNTK return
+<返回语句>
+SEMICN ;
+<语句>
+<语句列>
+<复合语句>
+RBRACE }
+<主函数>
+<程序>

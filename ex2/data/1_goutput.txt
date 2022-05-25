@@ -1,0 +1,810 @@
+VOIDTK void
+MAINTK main
+LPARENT (
+RPARENT )
+LBRACE {
+INTTK int
+IDENFR a
+<变量定义无初始化>
+<变量定义>
+SEMICN ;
+INTTK int
+IDENFR b
+ASSIGN =
+INTCON 5
+<无符号整数>
+<整数>
+<常量>
+<变量定义及初始化>
+<变量定义>
+SEMICN ;
+<变量说明>
+IDENFR a
+ASSIGN =
+INTCON 15
+<无符号整数>
+<整数>
+<因子>
+<项>
+<表达式>
+<赋值语句>
+SEMICN ;
+<语句>
+SWITCHTK switch
+LPARENT (
+IDENFR a
+<因子>
+<项>
+<表达式>
+RPARENT )
+LBRACE {
+CASETK case
+INTCON 10
+<无符号整数>
+<整数>
+<常量>
+COLON :
+PRINTFTK printf
+LPARENT (
+INTCON 10
+<无符号整数>
+<整数>
+<因子>
+<项>
+<表达式>
+RPARENT )
+<写语句>
+SEMICN ;
+<语句>
+<情况子语句>
+CASETK case
+INTCON 15
+<无符号整数>
+<整数>
+<常量>
+COLON :
+PRINTFTK printf
+LPARENT (
+INTCON 15
+<无符号整数>
+<整数>
+<因子>
+<项>
+<表达式>
+RPARENT )
+<写语句>
+SEMICN ;
+<语句>
+<情况子语句>
+<情况表>
+DEFAULTTK default
+COLON :
+SWITCHTK switch
+LPARENT (
+IDENFR a
+<因子>
+<项>
+<表达式>
+RPARENT )
+LBRACE {
+CASETK case
+INTCON 20
+<无符号整数>
+<整数>
+<常量>
+COLON :
+PRINTFTK printf
+LPARENT (
+INTCON 20
+<无符号整数>
+<整数>
+<因子>
+<项>
+<表达式>
+RPARENT )
+<写语句>
+SEMICN ;
+<语句>
+<情况子语句>
+<情况表>
+DEFAULTTK default
+COLON :
+PRINTFTK printf
+LPARENT (
+IDENFR a
+<因子>
+<项>
+<表达式>
+RPARENT )
+<写语句>
+SEMICN ;
+<语句>
+<缺省>
+RBRACE }
+<情况语句>
+<语句>
+<缺省>
+RBRACE }
+<情况语句>
+<语句>
+SEMICN ;
+<语句>
+IDENFR a
+ASSIGN =
+INTCON 10
+<无符号整数>
+<整数>
+<因子>
+<项>
+<表达式>
+<赋值语句>
+SEMICN ;
+<语句>
+SWITCHTK switch
+LPARENT (
+IDENFR a
+<因子>
+<项>
+<表达式>
+RPARENT )
+LBRACE {
+CASETK case
+INTCON 10
+<无符号整数>
+<整数>
+<常量>
+COLON :
+PRINTFTK printf
+LPARENT (
+INTCON 10
+<无符号整数>
+<整数>
+<因子>
+<项>
+<表达式>
+RPARENT )
+<写语句>
+SEMICN ;
+<语句>
+<情况子语句>
+CASETK case
+INTCON 15
+<无符号整数>
+<整数>
+<常量>
+COLON :
+PRINTFTK printf
+LPARENT (
+INTCON 15
+<无符号整数>
+<整数>
+<因子>
+<项>
+<表达式>
+RPARENT )
+<写语句>
+SEMICN ;
+<语句>
+<情况子语句>
+<情况表>
+DEFAULTTK default
+COLON :
+SWITCHTK switch
+LPARENT (
+IDENFR a
+<因子>
+<项>
+<表达式>
+RPARENT )
+LBRACE {
+CASETK case
+INTCON 20
+<无符号整数>
+<整数>
+<常量>
+COLON :
+PRINTFTK printf
+LPARENT (
+INTCON 20
+<无符号整数>
+<整数>
+<因子>
+<项>
+<表达式>
+RPARENT )
+<写语句>
+SEMICN ;
+<语句>
+<情况子语句>
+<情况表>
+DEFAULTTK default
+COLON :
+PRINTFTK printf
+LPARENT (
+IDENFR a
+<因子>
+<项>
+<表达式>
+RPARENT )
+<写语句>
+SEMICN ;
+<语句>
+<缺省>
+RBRACE }
+<情况语句>
+<语句>
+<缺省>
+RBRACE }
+<情况语句>
+<语句>
+SEMICN ;
+<语句>
+IDENFR a
+ASSIGN =
+INTCON 20
+<无符号整数>
+<整数>
+<因子>
+<项>
+<表达式>
+<赋值语句>
+SEMICN ;
+<语句>
+SWITCHTK switch
+LPARENT (
+IDENFR a
+<因子>
+<项>
+<表达式>
+RPARENT )
+LBRACE {
+CASETK case
+INTCON 10
+<无符号整数>
+<整数>
+<常量>
+COLON :
+PRINTFTK printf
+LPARENT (
+INTCON 10
+<无符号整数>
+<整数>
+<因子>
+<项>
+<表达式>
+RPARENT )
+<写语句>
+SEMICN ;
+<语句>
+<情况子语句>
+CASETK case
+INTCON 15
+<无符号整数>
+<整数>
+<常量>
+COLON :
+PRINTFTK printf
+LPARENT (
+INTCON 15
+<无符号整数>
+<整数>
+<因子>
+<项>
+<表达式>
+RPARENT )
+<写语句>
+SEMICN ;
+<语句>
+<情况子语句>
+<情况表>
+DEFAULTTK default
+COLON :
+SWITCHTK switch
+LPARENT (
+IDENFR a
+<因子>
+<项>
+<表达式>
+RPARENT )
+LBRACE {
+CASETK case
+INTCON 20
+<无符号整数>
+<整数>
+<常量>
+COLON :
+PRINTFTK printf
+LPARENT (
+INTCON 20
+<无符号整数>
+<整数>
+<因子>
+<项>
+<表达式>
+RPARENT )
+<写语句>
+SEMICN ;
+<语句>
+<情况子语句>
+<情况表>
+DEFAULTTK default
+COLON :
+PRINTFTK printf
+LPARENT (
+IDENFR a
+<因子>
+<项>
+<表达式>
+RPARENT )
+<写语句>
+SEMICN ;
+<语句>
+<缺省>
+RBRACE }
+<情况语句>
+<语句>
+<缺省>
+RBRACE }
+<情况语句>
+<语句>
+SEMICN ;
+<语句>
+IDENFR a
+ASSIGN =
+INTCON 157
+<无符号整数>
+<整数>
+<因子>
+<项>
+<表达式>
+<赋值语句>
+SEMICN ;
+<语句>
+SWITCHTK switch
+LPARENT (
+IDENFR a
+<因子>
+<项>
+<表达式>
+RPARENT )
+LBRACE {
+CASETK case
+INTCON 10
+<无符号整数>
+<整数>
+<常量>
+COLON :
+PRINTFTK printf
+LPARENT (
+INTCON 10
+<无符号整数>
+<整数>
+<因子>
+<项>
+<表达式>
+RPARENT )
+<写语句>
+SEMICN ;
+<语句>
+<情况子语句>
+CASETK case
+INTCON 15
+<无符号整数>
+<整数>
+<常量>
+COLON :
+PRINTFTK printf
+LPARENT (
+INTCON 15
+<无符号整数>
+<整数>
+<因子>
+<项>
+<表达式>
+RPARENT )
+<写语句>
+SEMICN ;
+<语句>
+<情况子语句>
+<情况表>
+DEFAULTTK default
+COLON :
+SWITCHTK switch
+LPARENT (
+IDENFR a
+<因子>
+<项>
+<表达式>
+RPARENT )
+LBRACE {
+CASETK case
+INTCON 20
+<无符号整数>
+<整数>
+<常量>
+COLON :
+PRINTFTK printf
+LPARENT (
+INTCON 20
+<无符号整数>
+<整数>
+<因子>
+<项>
+<表达式>
+RPARENT )
+<写语句>
+SEMICN ;
+<语句>
+<情况子语句>
+<情况表>
+DEFAULTTK default
+COLON :
+PRINTFTK printf
+LPARENT (
+IDENFR a
+<因子>
+<项>
+<表达式>
+RPARENT )
+<写语句>
+SEMICN ;
+<语句>
+<缺省>
+RBRACE }
+<情况语句>
+<语句>
+<缺省>
+RBRACE }
+<情况语句>
+<语句>
+SEMICN ;
+<语句>
+SEMICN ;
+<语句>
+IDENFR a
+ASSIGN =
+INTCON 1000
+<无符号整数>
+<整数>
+<因子>
+<项>
+<表达式>
+<赋值语句>
+SEMICN ;
+<语句>
+SWITCHTK switch
+LPARENT (
+IDENFR a
+<因子>
+<项>
+<表达式>
+RPARENT )
+LBRACE {
+CASETK case
+INTCON 5
+<无符号整数>
+<整数>
+<常量>
+COLON :
+PRINTFTK PRINTF
+LPARENT (
+IDENFR a
+<因子>
+<项>
+<表达式>
+RPARENT )
+<写语句>
+SEMICN ;
+<语句>
+<情况子语句>
+CASETK case
+INTCON 10
+<无符号整数>
+<整数>
+<常量>
+COLON :
+PRINTFTK printf
+LPARENT (
+INTCON 10
+<无符号整数>
+<整数>
+<因子>
+<项>
+<表达式>
+RPARENT )
+<写语句>
+SEMICN ;
+<语句>
+<情况子语句>
+<情况表>
+DEFAULTTK default
+COLON :
+SWITCHTK switch
+LPARENT (
+IDENFR a
+<因子>
+<项>
+<表达式>
+RPARENT )
+LBRACE {
+CASETK case
+INTCON 20
+<无符号整数>
+<整数>
+<常量>
+COLON :
+PRINTFTK printf
+LPARENT (
+INTCON 20
+<无符号整数>
+<整数>
+<因子>
+<项>
+PLUS +
+IDENFR b
+<因子>
+<项>
+<表达式>
+RPARENT )
+<写语句>
+SEMICN ;
+<语句>
+<情况子语句>
+CASETK case
+INTCON 100
+<无符号整数>
+<整数>
+<常量>
+COLON :
+PRINTFTK printf
+LPARENT (
+INTCON 100
+<无符号整数>
+<整数>
+<因子>
+<项>
+PLUS +
+IDENFR b
+<因子>
+<项>
+<表达式>
+RPARENT )
+<写语句>
+SEMICN ;
+<语句>
+<情况子语句>
+<情况表>
+DEFAULTTK default
+COLON :
+SWITCHTK switch
+LPARENT (
+IDENFR a
+<因子>
+<项>
+<表达式>
+RPARENT )
+LBRACE {
+CASETK case
+INTCON 1000
+<无符号整数>
+<整数>
+<常量>
+COLON :
+PRINTFTK printf
+LPARENT (
+IDENFR a
+<因子>
+<项>
+PLUS +
+IDENFR b
+<因子>
+<项>
+<表达式>
+RPARENT )
+<写语句>
+SEMICN ;
+<语句>
+<情况子语句>
+<情况表>
+DEFAULTTK default
+COLON :
+PRINTFTK printf
+LPARENT (
+IDENFR a
+<因子>
+<项>
+<表达式>
+RPARENT )
+<写语句>
+SEMICN ;
+<语句>
+<缺省>
+RBRACE }
+<情况语句>
+<语句>
+<缺省>
+RBRACE }
+<情况语句>
+<语句>
+<缺省>
+RBRACE }
+<情况语句>
+<语句>
+SEMICN ;
+<语句>
+IDENFR a
+ASSIGN =
+INTCON 3000
+<无符号整数>
+<整数>
+<因子>
+<项>
+<表达式>
+<赋值语句>
+SEMICN ;
+<语句>
+SWITCHTK switch
+LPARENT (
+IDENFR a
+<因子>
+<项>
+<表达式>
+RPARENT )
+LBRACE {
+CASETK case
+INTCON 5
+<无符号整数>
+<整数>
+<常量>
+COLON :
+PRINTFTK PRINTF
+LPARENT (
+IDENFR a
+<因子>
+<项>
+<表达式>
+RPARENT )
+<写语句>
+SEMICN ;
+<语句>
+<情况子语句>
+CASETK case
+INTCON 10
+<无符号整数>
+<整数>
+<常量>
+COLON :
+PRINTFTK printf
+LPARENT (
+INTCON 10
+<无符号整数>
+<整数>
+<因子>
+<项>
+<表达式>
+RPARENT )
+<写语句>
+SEMICN ;
+<语句>
+<情况子语句>
+<情况表>
+DEFAULTTK default
+COLON :
+SWITCHTK switch
+LPARENT (
+IDENFR a
+<因子>
+<项>
+<表达式>
+RPARENT )
+LBRACE {
+CASETK case
+INTCON 20
+<无符号整数>
+<整数>
+<常量>
+COLON :
+PRINTFTK printf
+LPARENT (
+INTCON 20
+<无符号整数>
+<整数>
+<因子>
+<项>
+PLUS +
+IDENFR b
+<因子>
+<项>
+<表达式>
+RPARENT )
+<写语句>
+SEMICN ;
+<语句>
+<情况子语句>
+CASETK case
+INTCON 100
+<无符号整数>
+<整数>
+<常量>
+COLON :
+PRINTFTK printf
+LPARENT (
+INTCON 100
+<无符号整数>
+<整数>
+<因子>
+<项>
+PLUS +
+IDENFR b
+<因子>
+<项>
+<表达式>
+RPARENT )
+<写语句>
+SEMICN ;
+<语句>
+<情况子语句>
+<情况表>
+DEFAULTTK default
+COLON :
+SWITCHTK switch
+LPARENT (
+IDENFR a
+<因子>
+<项>
+<表达式>
+RPARENT )
+LBRACE {
+CASETK case
+INTCON 1000
+<无符号整数>
+<整数>
+<常量>
+COLON :
+PRINTFTK printf
+LPARENT (
+IDENFR a
+<因子>
+<项>
+PLUS +
+IDENFR b
+<因子>
+<项>
+<表达式>
+RPARENT )
+<写语句>
+SEMICN ;
+<语句>
+<情况子语句>
+<情况表>
+DEFAULTTK default
+COLON :
+PRINTFTK printf
+LPARENT (
+IDENFR a
+<因子>
+<项>
+<表达式>
+RPARENT )
+<写语句>
+SEMICN ;
+<语句>
+<缺省>
+RBRACE }
+<情况语句>
+<语句>
+<缺省>
+RBRACE }
+<情况语句>
+<语句>
+<缺省>
+RBRACE }
+<情况语句>
+<语句>
+SEMICN ;
+<语句>
+<语句列>
+<复合语句>
+RBRACE }
+<主函数>
+<程序>

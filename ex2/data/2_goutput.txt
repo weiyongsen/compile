@@ -1,0 +1,250 @@
+CONSTTK const
+INTTK int
+IDENFR _begini
+ASSIGN =
+INTCON 0
+<无符号整数>
+<整数>
+COMMA ,
+IDENFR _endi
+ASSIGN =
+PLUS +
+INTCON 18
+<无符号整数>
+<整数>
+COMMA ,
+IDENFR testfg
+ASSIGN =
+MINU -
+INTCON 6
+<无符号整数>
+<整数>
+<常量定义>
+SEMICN ;
+<常量说明>
+VOIDTK void
+MAINTK main
+LPARENT (
+RPARENT )
+LBRACE {
+INTTK int
+IDENFR a
+COMMA ,
+IDENFR i
+<变量定义无初始化>
+<变量定义>
+SEMICN ;
+<变量说明>
+PRINTFTK printf
+LPARENT (
+STRCON _begini =
+<字符串>
+COMMA ,
+IDENFR _begini
+<因子>
+<项>
+<表达式>
+RPARENT )
+<写语句>
+SEMICN ;
+<语句>
+SCANFTK scanf
+LPARENT (
+IDENFR i
+RPARENT )
+<读语句>
+SEMICN ;
+<语句>
+IDENFR a
+ASSIGN =
+IDENFR i
+<因子>
+<项>
+<表达式>
+<赋值语句>
+SEMICN ;
+<语句>
+PRINTFTK printf
+LPARENT (
+IDENFR a
+<因子>
+<项>
+<表达式>
+RPARENT )
+<写语句>
+SEMICN ;
+<语句>
+IDENFR a
+ASSIGN =
+IDENFR testfg
+<因子>
+<项>
+<表达式>
+<赋值语句>
+SEMICN ;
+<语句>
+PRINTFTK printf
+LPARENT (
+IDENFR a
+<因子>
+<项>
+<表达式>
+RPARENT )
+<写语句>
+SEMICN ;
+<语句>
+IDENFR a
+ASSIGN =
+IDENFR a
+<因子>
+<项>
+PLUS +
+IDENFR _endi
+<因子>
+<项>
+PLUS +
+IDENFR testfg
+<因子>
+<项>
+<表达式>
+<赋值语句>
+SEMICN ;
+<语句>
+PRINTFTK printf
+LPARENT (
+IDENFR a
+<因子>
+<项>
+<表达式>
+RPARENT )
+<写语句>
+SEMICN ;
+<语句>
+PRINTFTK printf
+LPARENT (
+STRCON Let's have fun.
+<字符串>
+RPARENT )
+<写语句>
+SEMICN ;
+<语句>
+IDENFR a
+ASSIGN =
+INTCON 1
+<无符号整数>
+<整数>
+<因子>
+<项>
+<表达式>
+<赋值语句>
+SEMICN ;
+<语句>
+IDENFR a
+ASSIGN =
+LPARENT (
+IDENFR a
+<因子>
+<项>
+PLUS +
+INTCON 1700
+<无符号整数>
+<整数>
+<因子>
+<项>
+PLUS +
+INTCON 5
+<无符号整数>
+<整数>
+<因子>
+<项>
+<表达式>
+RPARENT )
+<因子>
+MULT *
+INTCON 1000
+<无符号整数>
+<整数>
+<因子>
+<项>
+<表达式>
+<赋值语句>
+SEMICN ;
+<语句>
+PRINTFTK printf
+LPARENT (
+IDENFR a
+<因子>
+<项>
+<表达式>
+RPARENT )
+<写语句>
+SEMICN ;
+<语句>
+PRINTFTK printf
+LPARENT (
+STRCON My stunum is :
+<字符串>
+RPARENT )
+<写语句>
+SEMICN ;
+<语句>
+PRINTFTK printf
+LPARENT (
+STRCON 17060000
+<字符串>
+RPARENT )
+<写语句>
+SEMICN ;
+<语句>
+IDENFR a
+ASSIGN =
+LPARENT (
+IDENFR _begini
+<因子>
+<项>
+PLUS +
+IDENFR _endi
+<因子>
+<项>
+<表达式>
+RPARENT )
+<因子>
+MULT *
+IDENFR testfg
+<因子>
+DIV /
+INTCON 2
+<无符号整数>
+<整数>
+<因子>
+<项>
+<表达式>
+<赋值语句>
+SEMICN ;
+<语句>
+PRINTFTK printf
+LPARENT (
+STRCON a is :
+<字符串>
+COMMA ,
+IDENFR a
+<因子>
+<项>
+<表达式>
+RPARENT )
+<写语句>
+SEMICN ;
+<语句>
+PRINTFTK printf
+LPARENT (
+STRCON Congratulations
+<字符串>
+RPARENT )
+<写语句>
+SEMICN ;
+<语句>
+<语句列>
+<复合语句>
+RBRACE }
+<主函数>
+<程序>
