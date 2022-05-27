@@ -1,0 +1,203 @@
+1	: CONSTTK const
+1	: INTTK int
+1	: IDENFR _begini
+1	: ASSIGN =
+1	: INTCON 0
+<无符号整数>
+<整数>
+1	: COMMA ,
+1	: IDENFR _endi
+1	: ASSIGN =
+1	: PLUS +
+1	: INTCON 18
+<无符号整数>
+<整数>
+1	: COMMA ,
+1	: IDENFR testfg
+1	: ASSIGN =
+1	: MINU -
+1	: INTCON 6
+<无符号整数>
+<整数>
+<常量定义>
+1	: SEMICN ;
+<常量说明>
+2	: VOIDTK void
+2	: MAINTK main
+2	: LPARENT (
+2	: RPARENT )
+2	: LBRACE {
+3	: INTTK int
+3	: IDENFR a
+3	: COMMA ,
+3	: IDENFR i
+<变量定义无初始化>
+<变量定义>
+3	: SEMICN ;
+<变量说明>
+4	: PRINTFTK printf
+4	: LPARENT (
+4	: STRCON _begini = 
+<字符串>
+4	: COMMA ,
+4	: IDENFR _begini
+<因子>
+<项>
+<表达式>
+4	: RPARENT )
+<写语句>
+4	: SEMICN ;
+<语句>
+5	: SCANFTK scanf
+5	: LPARENT (
+5	: IDENFR i
+5	: RPARENT )
+<读语句>
+5	: SEMICN ;
+<语句>
+6	: IDENFR a
+6	: ASSIGN =
+6	: IDENFR i
+<因子>
+<项>
+<表达式>
+<赋值语句>
+6	: SEMICN ;
+<语句>
+7	: PRINTFTK printf
+7	: LPARENT (
+7	: IDENFR a
+<因子>
+<项>
+<表达式>
+7	: RPARENT )
+<写语句>
+7	: SEMICN ;
+<语句>
+8	: IDENFR a
+8	: ASSIGN =
+8	: IDENFR testfg
+<因子>
+<项>
+<表达式>
+<赋值语句>
+8	: SEMICN ;
+<语句>
+9	: PRINTFTK printf
+9	: LPARENT (
+9	: IDENFR a
+<因子>
+<项>
+<表达式>
+9	: RPARENT )
+<写语句>
+9	: SEMICN ;
+<语句>
+10	: IDENFR a
+10	: ASSIGN =
+10	: IDENFR a
+<因子>
+<项>
+10	: PLUS +
+10	: IDENFR _endi
+<因子>
+<项>
+10	: PLUS +
+10	: IDENFR testfg
+<因子>
+<项>
+<表达式>
+<赋值语句>
+10	: SEMICN ;
+<语句>
+11	: PRINTFTK printf
+11	: LPARENT (
+11	: IDENFR a
+<因子>
+<项>
+<表达式>
+11	: RPARENT )
+<写语句>
+11	: SEMICN ;
+<语句>
+12	: PRINTFTK printf
+12	: LPARENT (
+12	: STRCON Let's have fun.
+<字符串>
+12	: RPARENT )
+<写语句>
+12	: SEMICN ;
+<语句>
+13	: IDENFR a
+13	: ASSIGN =
+13	: INTCON 1
+<无符号整数>
+<整数>
+<因子>
+<项>
+<表达式>
+<赋值语句>
+13	: SEMICN ;
+<语句>
+14	: IDENFR a
+14	: ASSIGN =
+14	: LPARENT (
+14	: IDENFR a
+<因子>
+<项>
+14	: PLUS +
+14	: INTCON 1800
+<无符号整数>
+<整数>
+<因子>
+<项>
+14	: PLUS +
+14	: INTCON 5
+<无符号整数>
+<整数>
+<因子>
+<项>
+<表达式>
+14	: RPARENT )
+<因子>
+14	: MULT *
+14	: INTCON 1000
+<无符号整数>
+<整数>
+<因子>
+<项>
+<表达式>
+<赋值语句>
+14	: SEMICN ;
+<语句>
+15	: PRINTFTK printf
+15	: LPARENT (
+15	: IDENFR a
+<因子>
+<项>
+<表达式>
+15	: RPARENT )
+<写语句>
+15	: SEMICN ;
+<语句>
+16	: PRINTFTK printf
+16	: LPARENT (
+16	: STRCON My stunum is : 
+<字符串>
+16	: RPARENT )
+<写语句>
+16	: SEMICN ;
+<语句>
+17	: PRINTFTK printf
+17	: LPARENT (
+17	: STRCON 18060000
+<字符串>
+17	: RPARENT )
+<写语句>
+17	: SEMICN ;
+<语句>
+<语句列>
+<复合语句>
+18	: RBRACE }
+<主函数>
+<程序>

@@ -1,0 +1,431 @@
+1	: INTTK int
+1	: IDENFR func_switch_ch
+<声明头部>
+1	: LPARENT (
+<参数表>
+1	: RPARENT )
+1	: LBRACE {
+2	: CHARTK char
+2	: IDENFR ch
+<变量定义无初始化>
+<变量定义>
+2	: SEMICN ;
+<变量说明>
+3	: SCANFTK scanf
+3	: LPARENT (
+3	: IDENFR ch
+3	: RPARENT )
+<读语句>
+3	: SEMICN ;
+<语句>
+4	: SWITCHTK switch
+4	: LPARENT (
+4	: IDENFR ch
+<因子>
+<项>
+<表达式>
+4	: RPARENT )
+5	: LBRACE {
+6	: CASETK case
+6	: CHARCON m
+<常量>
+6	: COLON :
+7	: PRINTFTK printf
+7	: LPARENT (
+7	: STRCON Got m
+<字符串>
+7	: RPARENT )
+<写语句>
+7	: SEMICN ;
+<语句>
+<情况子语句>
+<情况表>
+8	: DEFAULTTK default
+8	: COLON :
+8	: LBRACE {
+9	: PRINTFTK printf
+9	: LPARENT (
+9	: STRCON Got else
+<字符串>
+9	: RPARENT )
+<写语句>
+9	: SEMICN ;
+<语句>
+<语句列>
+10	: RBRACE }
+<语句>
+<缺省>
+11	: RBRACE }
+<情况语句>
+<语句>
+12	: RETURNTK return
+12	: LPARENT (
+12	: INTCON 0
+<无符号整数>
+<整数>
+<因子>
+<项>
+<表达式>
+12	: RPARENT )
+<返回语句>
+12	: SEMICN ;
+<语句>
+<语句列>
+<复合语句>
+13	: RBRACE }
+<有返回值函数定义>
+15	: INTTK int
+15	: IDENFR func_switch_int
+<声明头部>
+15	: LPARENT (
+15	: INTTK int
+15	: IDENFR c
+<参数表>
+15	: RPARENT )
+15	: LBRACE {
+16	: INTTK int
+16	: IDENFR tmp
+<变量定义无初始化>
+<变量定义>
+16	: SEMICN ;
+<变量说明>
+17	: SCANFTK scanf
+17	: LPARENT (
+17	: IDENFR tmp
+17	: RPARENT )
+<读语句>
+17	: SEMICN ;
+<语句>
+18	: SWITCHTK switch
+18	: LPARENT (
+18	: IDENFR tmp
+<因子>
+<项>
+<表达式>
+18	: RPARENT )
+19	: LBRACE {
+20	: CASETK case
+20	: INTCON 1
+<无符号整数>
+<整数>
+<常量>
+20	: COLON :
+21	: PRINTFTK printf
+21	: LPARENT (
+21	: STRCON iGot 1
+<字符串>
+21	: RPARENT )
+<写语句>
+21	: SEMICN ;
+<语句>
+<情况子语句>
+22	: CASETK case
+22	: INTCON 2
+<无符号整数>
+<整数>
+<常量>
+22	: COLON :
+23	: SEMICN ;
+<语句>
+<情况子语句>
+24	: CASETK case
+24	: INTCON 3
+<无符号整数>
+<整数>
+<常量>
+24	: COLON :
+24	: LBRACE {
+<语句列>
+24	: RBRACE }
+<语句>
+<情况子语句>
+<情况表>
+25	: DEFAULTTK default
+25	: COLON :
+25	: LBRACE {
+26	: PRINTFTK printf
+26	: LPARENT (
+26	: STRCON iGot else
+<字符串>
+26	: RPARENT )
+<写语句>
+26	: SEMICN ;
+<语句>
+<语句列>
+27	: RBRACE }
+<语句>
+<缺省>
+28	: RBRACE }
+<情况语句>
+<语句>
+29	: RETURNTK return
+29	: LPARENT (
+29	: INTCON 0
+<无符号整数>
+<整数>
+<因子>
+<项>
+<表达式>
+29	: RPARENT )
+<返回语句>
+29	: SEMICN ;
+<语句>
+<语句列>
+<复合语句>
+30	: RBRACE }
+<有返回值函数定义>
+32	: INTTK int
+32	: IDENFR func2
+<声明头部>
+32	: LPARENT (
+32	: CHARTK char
+32	: IDENFR c
+<参数表>
+32	: RPARENT )
+32	: LBRACE {
+33	: INTTK int
+33	: IDENFR tmp
+<变量定义无初始化>
+<变量定义>
+33	: SEMICN ;
+<变量说明>
+34	: SCANFTK scanf
+34	: LPARENT (
+34	: IDENFR tmp
+34	: RPARENT )
+<读语句>
+34	: SEMICN ;
+<语句>
+35	: SWITCHTK switch
+35	: LPARENT (
+35	: IDENFR tmp
+<因子>
+<项>
+<表达式>
+35	: RPARENT )
+36	: LBRACE {
+37	: CASETK case
+37	: INTCON 1
+<无符号整数>
+<整数>
+<常量>
+37	: COLON :
+38	: PRINTFTK printf
+38	: LPARENT (
+38	: STRCON iGot 1
+<字符串>
+38	: RPARENT )
+<写语句>
+38	: SEMICN ;
+<语句>
+<情况子语句>
+39	: CASETK case
+39	: INTCON 2
+<无符号整数>
+<整数>
+<常量>
+39	: COLON :
+40	: SEMICN ;
+<语句>
+<情况子语句>
+41	: CASETK case
+41	: INTCON 3
+<无符号整数>
+<整数>
+<常量>
+41	: COLON :
+41	: LBRACE {
+<语句列>
+41	: RBRACE }
+<语句>
+<情况子语句>
+<情况表>
+42	: DEFAULTTK default
+42	: COLON :
+42	: LBRACE {
+43	: PRINTFTK printf
+43	: LPARENT (
+43	: STRCON iGot else
+<字符串>
+43	: RPARENT )
+<写语句>
+43	: SEMICN ;
+<语句>
+<语句列>
+44	: RBRACE }
+<语句>
+<缺省>
+45	: RBRACE }
+<情况语句>
+<语句>
+46	: RETURNTK return
+46	: LPARENT (
+46	: INTCON 0
+<无符号整数>
+<整数>
+<因子>
+<项>
+<表达式>
+46	: RPARENT )
+<返回语句>
+46	: SEMICN ;
+<语句>
+<语句列>
+<复合语句>
+47	: RBRACE }
+<有返回值函数定义>
+49	: VOIDTK void
+49	: MAINTK main
+49	: LPARENT (
+49	: RPARENT )
+49	: LBRACE {
+50	: CHARTK char
+50	: IDENFR arr
+50	: LBRACK [
+50	: INTCON 31
+<无符号整数>
+50	: RBRACK ]
+50	: LBRACK [
+50	: INTCON 20
+<无符号整数>
+50	: RBRACK ]
+<变量定义无初始化>
+<变量定义>
+50	: SEMICN ;
+<变量说明>
+51	: PRINTFTK printf
+51	: LPARENT (
+51	: STRCON 18373050
+<字符串>
+51	: RPARENT )
+<写语句>
+51	: SEMICN ;
+<语句>
+52	: IDENFR func_switch_ch
+52	: LPARENT (
+52	: IDENFR arr
+52	: LBRACK [
+52	: INTCON 0
+<无符号整数>
+<整数>
+<因子>
+<项>
+<表达式>
+52	: RBRACK ]
+52	: LBRACK [
+52	: INTCON 2
+<无符号整数>
+<整数>
+<因子>
+<项>
+<表达式>
+52	: RBRACK ]
+<因子>
+<项>
+<表达式>
+<值参数表>
+函数参数个数不匹配 error!——!
+52	: RPARENT )
+<有返回值函数调用语句>
+52	: SEMICN ;
+<语句>
+53	: IDENFR func_switch_int
+53	: LPARENT (
+53	: CHARCON b
+<因子>
+<项>
+<表达式>
+<值参数表>
+函数参数类型不匹配 error!——!
+53	: RPARENT )
+<有返回值函数调用语句>
+53	: SEMICN ;
+<语句>
+54	: IDENFR func_switch_int
+54	: LPARENT (
+54	: IDENFR func2
+54	: LPARENT (
+54	: CHARCON a
+<因子>
+<项>
+<表达式>
+<值参数表>
+54	: RPARENT )
+<有返回值函数调用语句>
+<因子>
+<项>
+<表达式>
+<值参数表>
+54	: RPARENT )
+<有返回值函数调用语句>
+54	: SEMICN ;
+<语句>
+55	: IDENFR func2
+55	: LPARENT (
+55	: IDENFR func2
+55	: LPARENT (
+55	: CHARCON a
+<因子>
+<项>
+<表达式>
+<值参数表>
+55	: RPARENT )
+<有返回值函数调用语句>
+<因子>
+<项>
+<表达式>
+<值参数表>
+函数参数类型不匹配 error!——!
+55	: RPARENT )
+<有返回值函数调用语句>
+55	: SEMICN ;
+<语句>
+56	: PRINTFTK printf
+56	: LPARENT (
+56	: STRCON --------------------
+<字符串>
+56	: RPARENT )
+<写语句>
+56	: SEMICN ;
+<语句>
+58	: PRINTFTK printf
+58	: LPARENT (
+58	: STRCON ylsyyds! yls 3x speed!
+<字符串>
+58	: RPARENT )
+<写语句>
+58	: SEMICN ;
+<语句>
+59	: PRINTFTK printf
+59	: LPARENT (
+59	: STRCON lls,yyds! xdd,yyds! gtc,yyds!
+<字符串>
+59	: RPARENT )
+<写语句>
+59	: SEMICN ;
+<语句>
+60	: PRINTFTK printf
+60	: LPARENT (
+60	: STRCON Cjbbbbbbbbbbbbbbbbbbb! --- The master encourager!
+<字符串>
+60	: RPARENT )
+<写语句>
+60	: SEMICN ;
+<语句>
+61	: PRINTFTK printf
+61	: LPARENT (
+61	: STRCON GoodLuck, may the encourager be with you!(
+<字符串>
+61	: RPARENT )
+<写语句>
+61	: SEMICN ;
+<语句>
+63	: RETURNTK return
+<返回语句>
+63	: SEMICN ;
+<语句>
+<语句列>
+<复合语句>
+64	: RBRACE }
+<主函数>
+<程序>

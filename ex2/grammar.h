@@ -9,7 +9,7 @@ int pos; // token÷∏’ÎŒª÷√
 vector<string> ans;
 vector<string> tokens;
 vector<string> wordnames;
-
+vector<string, bool> return_functions;
 void program();
 void clsm();
 void cldy();
@@ -1234,7 +1234,7 @@ void case_table()
 {
     case_sub();
     Forward();
-    if (token == table["case"])
+    while (token == table["case"])
     {
         case_sub();
         Forward();
