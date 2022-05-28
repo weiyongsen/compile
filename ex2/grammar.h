@@ -4,12 +4,7 @@
 
 using namespace std;
 
-int pos; // token指针位置
 
-vector<string> ans;
-vector<string> tokens;
-vector<string> wordnames;
-vector<string, bool> return_functions;
 void program();
 void clsm();
 void cldy();
@@ -23,7 +18,7 @@ void fhyj();
 void csb();
 void main_func();
 void expression();
-void xiang();
+void item();
 void factor();
 void statement();
 void assign_state();
@@ -43,15 +38,18 @@ void read_state();
 void write_state();
 void return_state();
 
-int len = 0;
-string token = "";
 
-void error(string s)
-{
-    // cout << s + " error!" << endl;
-    ans.emplace_back(s + " error!——!");
-}
+vector<string> ans;     // 记录每次的识别结果
+vector<string> tokens;  // 类别码, 实验一结果传进来
+vector<string> wordnames;   // 单词名称， 实验一结果传值
+map<string, bool> functions;  // 记录函数是否由返回值
+int len = 0;    // tokens长度
+int pos;        // token指针位置
+string token = "";      // 当前取出的类别码 tokens[pos]
 
+
+
+// 指针前进
 void Forward()
 {
     if (pos + 1 < len)
@@ -60,6 +58,7 @@ void Forward()
     }
 }
 
+// 指针回退一格
 void Retrack()
 {
     if (pos - 1 >= 0)
@@ -68,9 +67,17 @@ void Retrack()
     }
 }
 
+// 添加当前  类别码 ， 单词名称
 void ADD()
 {
     ans.emplace_back(token + " " + wordnames[pos]);
+}
+
+// 报错信息
+void error(string s)
+{
+    // cout << s + " error!" << endl;
+    ans.emplace_back(s + " error!——!");
 }
 
 void OP_PM()
@@ -245,6 +252,8 @@ void ASSIGN()
         ADD();
     }
 }
+
+// 判断是否为标识符
 void IDENFR()
 {
     if (token != table["标识符"])
@@ -429,6 +438,7 @@ void smtb()
 
         Forward();
         IDENFR();
+        
         ans.emplace_back("<声明头部>");
     }
     else if (token == table["char"])
@@ -507,6 +517,7 @@ void bldy()
     ans.emplace_back("<变量定义>");
 }
 
+// 变量定义无初始化
 void bldy_uninit()
 {
     if (token == table["int"] || token == table["char"])
@@ -716,35 +727,36 @@ void bldy_init()
     }
 }
 
+// 有返回值函数定义
 void func_with_return_def()
 {
-    smtb();
+    if(token == table["int"] || token == table["char"]){
+        // 记录有返回值
+        functions[wordnames[pos+1]] = true;
+        smtb();
 
-    Forward();
-    LPARENT();
+        Forward();        LPARENT();
 
-    Forward();
-    csb();
+        Forward();        csb();
 
-    Forward();
-    RPARENT();
+        Forward();        RPARENT();
 
-    Forward();
-    LBRACE();
+        Forward();        LBRACE();
 
-    Forward();
-    fhyj();
+        Forward();        fhyj();
 
-    Forward();
-    RBRACE();
+        Forward();        RBRACE();
 
-    ans.emplace_back("<有返回值函数定义>");
+        ans.emplace_back("<有返回值函数定义>");
+    }
+    
 }
 
 void func_without_return_def()
 {
     if (token == table["void"])
     {
+        functions[wordnames[pos+1]] = false;
         ADD();
 
         Forward();
@@ -776,6 +788,7 @@ void func_without_return_def()
     }
 }
 
+// 复合语句
 void fhyj()
 {
     if (token == table["const"])
@@ -793,7 +806,7 @@ void fhyj()
 }
 
 void csb()
-{ // 死循环
+{ // TODO 测试出现死循环
     if (token == table["int"] || token == table["char"])
     {
         ADD();
@@ -867,6 +880,7 @@ void main_func()
     }
 }
 
+// 表达式
 void expression()
 {
     if (token == table["+"] || token == table["-"])
@@ -874,7 +888,7 @@ void expression()
         ADD();
         Forward();
     }
-    xiang();
+    item();
 
     Forward();
     while (token == table["+"] || token == table["-"])
@@ -882,7 +896,7 @@ void expression()
         ADD();
 
         Forward();
-        xiang();
+        item();
 
         Forward();
     }
@@ -890,7 +904,8 @@ void expression()
     ans.emplace_back("<表达式>");
 }
 
-void xiang()
+// 项
+void item()
 {
     factor();
 
@@ -909,6 +924,7 @@ void xiang()
     ans.emplace_back("<项>");
 }
 
+// 因子
 void factor()
 {
     if (token == table["标识符"])
@@ -984,7 +1000,7 @@ void statement()
 { // 语句
     if (token == table["while"] || token == table["for"])
     {
-        loop_state();
+        loop_state();   //循环语句
         ans.emplace_back("<语句>");
     }
     else if (token == table["if"])
@@ -992,23 +1008,21 @@ void statement()
         condi_state();
         ans.emplace_back("<语句>");
     }
-    else if (token == table["标识符"] && tokens[pos + 2] == table[")"])
-    {
-        func_without_return();
-        Forward();
-        SEMICN();
-        ans.emplace_back("<语句>");
-    }
     else if (token == table["标识符"] && (tokens[pos + 1] == table["="] || tokens[pos + 1] == table["["]))
     {
-        assign_state();
+        assign_state(); // 赋值语句
         Forward();
         SEMICN();
         ans.emplace_back("<语句>");
     }
-    else if (token == table["标识符"] && tokens[pos + 2] != table[")"])
+    else if (token == table["标识符"])
     {
-        func_with_return();
+        map<string, bool>::iterator iter;
+        iter = functions.find(token); // 查找是否有返回值
+        if(iter->second)
+            func_with_return();
+        else
+            func_without_return();
         Forward();
         SEMICN();
         ans.emplace_back("<语句>");
@@ -1048,17 +1062,18 @@ void statement()
         RBRACE();
         ans.emplace_back("<语句>");
     }
-    else if (token == table[";"])
+    else if (token == table[";"])   // 空语句
     {
         SEMICN();
         ans.emplace_back("<语句>");
     }
-    else
+    else    // 出错
     {
         error("state()");
     }
 }
 
+// 赋值语句
 void assign_state()
 {
     if (token == table["标识符"])
@@ -1102,7 +1117,7 @@ void assign_state()
         }
     }
 }
-
+// 条件语句
 void condi_state()
 {
     if (token == table["if"])
@@ -1129,7 +1144,7 @@ void condi_state()
         ans.emplace_back("<条件语句>");
     }
 }
-
+// 条件
 void condition()
 {
     expression();
@@ -1139,7 +1154,7 @@ void condition()
     expression();
     ans.emplace_back("<条件>");
 }
-
+// 循环语句
 void loop_state()
 {
     if (token == table["while"])
@@ -1196,13 +1211,13 @@ void loop_state()
         error("loop_state()");
     }
 }
-
+// 步长
 void step_size()
 {
     unsigned_int();
     ans.emplace_back("<步长>");
 }
-
+// 条件语句
 void case_state()
 {
     if (token == table["switch"])
@@ -1229,7 +1244,7 @@ void case_state()
         error("case_state()");
     }
 }
-
+// 条件表
 void case_table()
 {
     case_sub();
@@ -1242,7 +1257,7 @@ void case_table()
     Retrack();
     ans.emplace_back("<情况表>");
 }
-
+// 条件子语句
 void case_sub()
 {
     if (token == table["case"])
@@ -1257,7 +1272,7 @@ void case_sub()
         ans.emplace_back("<情况子语句>");
     }
 }
-
+// 缺省
 void case_default()
 {
     if (token == table["default"])
@@ -1270,7 +1285,7 @@ void case_default()
         ans.emplace_back("<缺省>");
     }
 }
-
+// 有返回值函数调用
 void func_with_return()
 {
     IDENFR();
@@ -1282,7 +1297,7 @@ void func_with_return()
     RPARENT();
     ans.emplace_back("<有返回值函数调用语句>");
 }
-
+// 无返回值函数调用
 void func_without_return()
 {
     IDENFR();
@@ -1293,7 +1308,7 @@ void func_without_return()
     RPARENT();
     ans.emplace_back("<无返回值函数调用语句>");
 }
-
+// 参数表
 void param_list()
 {
     if (token == table["+"] || token == table["-"] || token == table["标识符"] || token == table["("] || token == table["整形常量"] || token == table["字符常量"])
@@ -1320,7 +1335,7 @@ void param_list()
         error("param_list()");
     }
 }
-
+// 语句列
 void state_list()
 {
     while (token == table["while"] || token == table["for"] || token == table["if"] || token == table["标识符"] || token == table["scanf"] || token == table["printf"] || token == table["return"] || token == table["switch"] || token == table["{"] || token == table[";"])
@@ -1331,7 +1346,7 @@ void state_list()
     Retrack();
     ans.emplace_back("<语句列>");
 }
-
+// 读语句
 void read_state()
 {
     if (token == table["scanf"])
@@ -1346,7 +1361,7 @@ void read_state()
         ans.emplace_back("<读语句>");
     }
 }
-
+// 写语句
 void write_state()
 {
     if (token == table["printf"])
@@ -1385,7 +1400,7 @@ void write_state()
         ans.emplace_back("<写语句>");
     }
 }
-
+// 返回语句
 void return_state()
 {
     if (token == table["return"])
@@ -1409,7 +1424,7 @@ void return_state()
         error("return_state()");
     }
 }
-
+// 打印结果到文件
 void print_ans()
 {
     ofstream outfile;
@@ -1420,7 +1435,7 @@ void print_ans()
     }
     outfile.close();
 }
-
+// 语法分析
 int grammar_analyse(vector<string> &t, vector<string> &w)
 {
     // // 读取数据
