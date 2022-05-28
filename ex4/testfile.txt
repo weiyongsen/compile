@@ -15,4 +15,6 @@ a = (a +1800+5) * 1000;
 printf(a);
 printf("My stunum is : ");
 printf("18060000");
+printf("a is", -54);
+printf("Congratulations");
 }

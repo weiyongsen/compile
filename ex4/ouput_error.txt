@@ -196,8 +196,32 @@
 <写语句>
 17	: SEMICN ;
 <语句>
+18	: PRINTFTK printf
+18	: LPARENT (
+18	: STRCON a is
+<字符串>
+18	: COMMA ,
+18	: MINU -
+18	: INTCON 54
+<无符号整数>
+<整数>
+<因子>
+<项>
+<表达式>
+18	: RPARENT )
+<写语句>
+18	: SEMICN ;
+<语句>
+19	: PRINTFTK printf
+19	: LPARENT (
+19	: STRCON Congratulations
+<字符串>
+19	: RPARENT )
+<写语句>
+19	: SEMICN ;
+<语句>
 <语句列>
 <复合语句>
-18	: RBRACE }
+20	: RBRACE }
 <主函数>
 <程序>

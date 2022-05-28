@@ -47,6 +47,32 @@ void read_state();
 void write_state();
 bool return_state(bool is_return_int, bool is_return_char);
 
+//TODO 四元式结构体
+typedef struct four_element
+{
+	string op;
+	string arg1;
+	string arg2;
+	string result;
+	// 构造函数
+	four_element(){
+		op = "";
+		arg1 = "";
+		arg2 = "";
+		result = "";
+	}
+	four_element(string a,string b,string c,string d){
+		op = a;
+		arg1 = b;
+		arg2 = c;
+		result = d;
+	}
+}fe;
+int temp_num = 0;
+
+vector<fe> middle_code;
+fe f;
+
 vector<string> error_ans;
 vector<string> tokens;
 vector<string> names;
@@ -602,11 +628,19 @@ void const_des(bool is_local_defined) {
 
 // 常量定义
 void const_def(bool is_local_defined) {
+	//TODO 四元式初始化
+	f.op = table["="];
+	f.arg1 = "";
+	f.arg2 = "";
+	f.result = "";
+
 	if (token == table["int"]) {
 		ADD();
 
 		Forward();
 		IDENFR();
+
+		f.result = names[pos];
 		// 查看是否重定义
 		if (!check_error_b(is_local_defined)){
 			// 添加到对应vector
@@ -626,6 +660,15 @@ void const_def(bool is_local_defined) {
 		ASSIGN();
 
 		Forward();
+		if(token==table["+"]){
+			f.arg1 = names[pos + 1];
+		}else if(token==table["-"]){
+			f.arg1 = "-" + names[pos + 1];
+		}else{
+			f.arg1 = names[pos];
+		}
+
+		middle_code.emplace_back(f);
 		INTCON();
 
 		Forward();
@@ -634,6 +677,7 @@ void const_def(bool is_local_defined) {
 
 			Forward();
 			IDENFR();
+			f.result = names[pos];
 			// 查看是否重复定义
 			if (!check_error_b(is_local_defined)){
 				if (is_local_defined == false){
@@ -651,6 +695,15 @@ void const_def(bool is_local_defined) {
 			ASSIGN();
 
 			Forward();
+			if(token==table["+"]){
+				f.arg1 = names[pos + 1];
+			}else if(token==table["-"]){
+				f.arg1 = "-" + names[pos + 1];
+			}else{
+				f.arg1 = names[pos];
+			}
+			middle_code.emplace_back(f);
+
 			INTCON();
 
 			Forward(); // 查看之后一个是不是‘，’，判断循环
@@ -663,6 +716,7 @@ void const_def(bool is_local_defined) {
 
 		Forward();
 		IDENFR();
+		f.result = names[pos];
 		// 查看是否重复定义
 		if (!check_error_b(is_local_defined)){
 			if (is_local_defined == false){
@@ -679,6 +733,14 @@ void const_def(bool is_local_defined) {
 		ASSIGN();
 
 		Forward();
+		if(token==table["+"]){
+			f.arg1 = names[pos + 1];
+		}else if(token==table["-"]){
+			f.arg1 = "-" + names[pos + 1];
+		}else{
+			f.arg1 = names[pos];
+		}
+		middle_code.emplace_back(f);
 		CHARCON();
 
 		Forward();
@@ -687,6 +749,7 @@ void const_def(bool is_local_defined) {
 
 			Forward();
 			IDENFR();
+			f.result = names[pos];
 			// 查看是否重复定义
 			if (!check_error_b(is_local_defined)){
 				if (is_local_defined == false){
@@ -703,6 +766,14 @@ void const_def(bool is_local_defined) {
 			ASSIGN();
 
 			Forward();
+			if(token==table["+"]){
+				f.arg1 = names[pos + 1];
+			}else if(token==table["-"]){
+				f.arg1 = "-" + names[pos + 1];
+			}else{
+				f.arg1 = names[pos];
+			}
+			middle_code.emplace_back(f);
 			CHARCON();
 
 			Forward();
@@ -776,20 +847,31 @@ void variable_def(bool is_local_defined) {
 }
 
 void variable_def_without_init(bool is_local_defined) {
+	f.op = table["="];
+	f.arg1 = "";
+	f.arg2 = "";
+	f.result = "";
+
 	bool flag;	// 记录类型
 	if (token == table["int"] || token == table["char"]) {
 		ADD();
 
 		if (tokens[pos] == "INTTK"){
 			flag = true;
+			f.op = table["="];
+			f.arg1 = "0";
 		}
 		else{
 			flag = false;
+			f.op = table["="];
+			f.arg1 = "\"0\"";
 		}
 
 		Forward();
 		if (token == table["标识符"]) {
 			IDENFR();
+			f.result = names[pos];
+			middle_code.emplace_back(f);
 			// 查看是否重复定义
 			if (!check_error_b(is_local_defined)){
 				if (is_local_defined == false){
@@ -838,6 +920,8 @@ void variable_def_without_init(bool is_local_defined) {
 		Forward();
 		if (token == table["标识符"]) {
 			IDENFR();
+			f.result = names[pos];
+			middle_code.emplace_back(f);
 			// 查看是否重复定义
 			if (!check_error_b(is_local_defined)){
 				if (is_local_defined == false){
@@ -1253,19 +1337,60 @@ void main_func() {
 
 // 改为bool
 bool expression() {
+	string op = table["="], arg1 = "", arg2 = "", result = "";
+	bool first = false;
 	bool flag = false;
 	if (token == table["+"] || token == table["-"]) {
+		op = token;
+		arg1 = "0";
+		first = true;
+
 		ADD();
 		Forward();
 	}
 	flag |= item();
+	// 操作数arg1应该是item刚加入的，结果应该是最新的temp_num形成
+	if(first){
+		arg1 = "zero";
+	}else{
+		arg1 = "temp" + to_string(temp_num - 2);
+	}
+	arg2 = "temp" + to_string(temp_num - 1);
+	result = "temp" + to_string(temp_num);
+	f.op = op;
+	f.arg1 = arg1;
+	f.arg2 = arg2;
+	f.result = result;
+	if(f.op != table["="]){
+		middle_code.emplace_back(f);
+		temp_num++;
+	}
+		
+
+	//TODO 在item中的temp n 是上面+-号对应的f.arg1
+	
 
 	Forward();
 	while (token == table["+"] || token == table["-"]) {
+		op = token;
 		ADD();
 
 		Forward();
 		item();
+		//TODO 瞎写
+		arg1 = "temp" + to_string(temp_num - 2);
+		arg2 = "temp" + to_string(temp_num - 1);
+		result = "temp" + to_string(temp_num);
+		f.op = op;
+		f.arg1 = arg1;
+		f.arg2 = arg2;
+		f.result = result;
+		if(f.op != table["="]){
+			middle_code.emplace_back(f);
+			temp_num++;
+		}
+
+
 		flag = true;
 
 		Forward();
@@ -1277,15 +1402,42 @@ bool expression() {
 
 //项
 bool item() {
+	string op = table["="], arg1 = "", arg2 = "", result = "";
 	bool flag = false;
 	flag |= factor();
+	// 操作数是刚刚factor中加入的，result是最新的temp_num
+	arg1 = "temp" + to_string(temp_num - 1);
+	result = "temp" + to_string(temp_num);
+	f.op = op;
+	f.arg1 = arg1;
+	f.arg2 = arg2;
+	f.result = result;
+	if(f.op != table["="]){
+		middle_code.emplace_back(f);
+		temp_num++;
+	}
+		
 
 	Forward();
 	while (token == table["*"] || token == table["/"]) {
+		op = token;
+
 		ADD();
 
 		Forward();
 		flag = factor();
+		// 应该是factor传出的结果作为当前操作数
+		arg1 = "temp" + to_string(temp_num - 2);
+		arg2 = "temp" + to_string(temp_num - 1);
+		result = "temp" + to_string(temp_num);
+		f.op = op;
+		f.arg1 = arg1;
+		f.arg2 = arg2;
+		f.result = result;
+		if(f.op != table["="]){
+			middle_code.emplace_back(f);
+			temp_num++;
+		}
 
 		Forward();
 	}
@@ -1297,10 +1449,20 @@ bool item() {
 
 //  int为1，char为0
 bool factor() {
+	string op = table["="], arg1 = "", arg2 = "", result = "";
 	bool flag = false;
 	if (token == table["标识符"]) {
 
 		IDENFR();
+		//TODO 先给它赋了值
+		arg1 = names[pos];
+		result = "temp" + to_string(temp_num++);
+		f.op = op;
+		f.arg1 = arg1;
+		f.arg2 = arg2;
+		f.result = result;
+		middle_code.emplace_back(f);
+
 		if (check_error_c() == false){
 			flag = findVariableType(names[pos]);
 		}
@@ -1350,6 +1512,21 @@ bool factor() {
 		error_ans.emplace_back("<因子>");
 	}
 	else if (token == table["整形常量"] || token == table["+"] || token == table["-"]) {
+		if(token==table["+"]){
+			arg1 = names[pos + 1];
+		}else if(token==table["-"]){
+			arg1 = "-" + names[pos + 1];
+		}else{
+			arg1 = names[pos];
+		}
+		result = "temp" + to_string(temp_num++);
+		f.op = op;
+		f.arg1 = arg1;
+		f.arg2 = arg2;
+		f.result = result;
+		middle_code.emplace_back(f);
+		
+		
 		INTCON();
 		flag = 1;
 		error_ans.emplace_back("<因子>");
@@ -1358,6 +1535,14 @@ bool factor() {
 		CHARCON();
 		flag = 0;
 		error_ans.emplace_back("<因子>");
+
+		arg1 = names[pos];
+		result = "temp" + to_string(temp_num++);
+		f.op = op;
+		f.arg1 = arg1;
+		f.arg2 = arg2;
+		f.result = result;
+		middle_code.emplace_back(f);
 	}
 	else {
 		error_out("因子");
@@ -1381,7 +1566,16 @@ string statement(bool is_return_int, bool is_return_char) {   // 语句
 		error_ans.emplace_back("<语句>");
 	}
 	else if (token == table["标识符"] && (tokens[pos + 1] == table["="] || tokens[pos + 1] == table["["])) {
+		string op = table["="], arg1 = "", arg2 = "", result = names[pos];
+
 		assign_state();
+		arg1 = "temp" + to_string(temp_num - 1);
+		f.op = op;
+		f.arg1 = arg1;
+		f.arg2 = arg2;
+		f.result = result;
+		middle_code.emplace_back(f);
+
 		Forward(); SEMICN();
 		flag = false;
 		is_statement = true;
@@ -1463,6 +1657,7 @@ void assign_state() {
 
 		Forward();
 		if (token == table["="]) {
+			
 			ADD();
 			Forward();
 			expression();
@@ -1798,11 +1993,17 @@ bool state_list(bool is_return_int, bool is_return_char) {
 }
 
 void read_state() {
+	f.op = table["scanf"];
+	f.arg1 = "";
+	f.arg2 = "";
+	f.result = "";
 	if (token == table["scanf"]) {
 		ADD();
 		Forward(); LPARENT();
 
 		Forward(); IDENFR();
+		f.result = names[pos];
+		middle_code.emplace_back(f);
 		check_error_j();
 		check_error_c();
 
@@ -1812,16 +2013,39 @@ void read_state() {
 }
 
 void write_state() {
+	f.op = table["printf"];
+	f.arg1 = "";
+	f.arg2 = "";
+	f.result = "";
 	if (token == table["printf"]) {
 		ADD();
 		Forward(); LPARENT();
 		Forward();
 		if (token == table["字符串"]) {
 			STRCON();
+			// 先当成赋值，再当成输出
+			f.op = table["="];
+			f.arg1 = "\"" + names[pos] + "\"";
+			f.result = "temp" + to_string(temp_num++);
+			middle_code.emplace_back(f);
+			//
+			f.op = table["printf"];
+			f.arg1 = "";
+			f.arg2 = "";
+			f.result = "temp" + to_string(temp_num - 1);
+			middle_code.emplace_back(f);
+
 			Forward();
 			if (token == table[","]) {
 				ADD();
 				Forward(); expression();
+				//TODO 提取expression中的结果为操作数
+				f.op = table["printf"];
+				f.arg1 = "";
+				f.arg2 = "";
+				f.result = "temp" + to_string(temp_num - 1);
+				middle_code.emplace_back(f);
+
 				Forward(); RPARENT();
 			}
 			else if (token == table[")"]) {
@@ -1830,9 +2054,25 @@ void write_state() {
 			else {
 				Retrack();
 			}
+			f.op = table["printf"];
+			f.arg1 = "";
+			f.arg2 = "";
+			f.result = "newline";
+			middle_code.emplace_back(f);
 		}
 		else if (token == table["+"] || token == table["-"] || token == table["标识符"] || token == table["("] || token == table["整形常量"] || token == table["字符常量"]) {
 			expression();
+			f.op = table["printf"];
+			f.arg1 = "";
+			f.arg2 = "";
+			f.result = "temp" + to_string(temp_num - 1);
+			middle_code.emplace_back(f);
+
+			f.op = table["printf"];
+			f.arg1 = "";
+			f.arg2 = "";
+			f.result = "newline";
+			middle_code.emplace_back(f);
 			Forward(); RPARENT();
 		}
 		error_ans.emplace_back("<写语句>");
@@ -1886,7 +2126,7 @@ bool return_state(bool is_return_int, bool is_return_char) {
 	return not_return_void;
 }
 
-void print_error_error_ans() {
+void print_error_ans() {
 	ofstream outfile;
 	outfile.open("ouput_error.txt");
 	for (int i = 0; i < error_ans.size(); i++) {
@@ -1895,7 +2135,7 @@ void print_error_error_ans() {
 	outfile.close();
 }
 
-int error_analyse(vector<string>& t, vector<string>& w,vector <int> r) {
+int mips_generate(vector<string>& t, vector<string>& w,vector <int> &r, vector<fe> &m) {
 	tokens = t;
 	names = w;
 	rows = r;
@@ -1911,6 +2151,8 @@ int error_analyse(vector<string>& t, vector<string>& w,vector <int> r) {
 
 	program();
 
-	print_error_error_ans();
+	print_error_ans();
+	m = middle_code;
+
 	return 0;
 }
