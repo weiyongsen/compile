@@ -56,6 +56,7 @@ string token = "";
 
 map<string, bool> functions;		// 记录有无返回值
 map<string, bool> return_functions; // 记录返回值类型  值int 1，  char 0
+
 map<string, bool> identifiers; 			// 全局标识符
 map<string, bool> identifiers_local; 	// 局部标识符
 
@@ -66,13 +67,13 @@ vector<string> consts_local;		// 局部常量
 // 定义Function类	
 class Function{
 	public:
-		string func_name;
-		bool is_return_int;
-		bool is_void;
-		int num_of_params;
-		vector<bool> params_type;
+		string func_name;		// 函数名
+		bool is_return_int;		// 返回值类型
+		bool is_void;			// 是否有返回值
+		int num_of_params;		// 参数数量
+		vector<bool> params_type;	// 参数类型
 
-		// with params
+		// 构造
 		Function(string name, bool is_void_in, bool is_return_int_in, vector<bool> params_type_in){
 			this->func_name = name;
 			this->is_void = is_void_in;
@@ -81,12 +82,12 @@ class Function{
 			this->params_type = params_type_in;
 		}
 
-		// is params nums matched return true
+		// 检查参数数量
 		bool checkParamsNum(vector<bool> params){
 			return this->num_of_params == params.size();
 		}
 
-		// is params matched return true
+		// 检查参数类别
 		bool checkIsMatch(vector<bool> params){
 			for (int i = 0; i < this->num_of_params; i++){
 				if (this->params_type[i] != params[i]){
@@ -154,10 +155,9 @@ bool isAlpha(char c){
 
 // 非法符号或不符合词法
 void check_error_a(){
-	if (tokens[pos] == "STRCON"){
+	if (tokens[pos] == table["字符串"]){
 		if (names[pos].size() == 0){
 			error('a');
-			error_out("String不合词法");
 			return;
 		}
 		for (char c:names[pos]){
@@ -168,11 +168,10 @@ void check_error_a(){
 			}
 		}
 	}
-	else if (tokens[pos] == "CHARCON"){
+	else if (tokens[pos] == table["字符常量"]){
 		if (names[pos][0] != '+' && names[pos][0] != '-' && names[pos][0] != '*' && names[pos][0] != '/' &&
 		 !isDigit(names[pos][0]) && !isAlpha(names[pos][0])){
 			error('a');
-			error_out("Char不合词法");
 		}
 	}
 }
@@ -181,38 +180,36 @@ void check_error_a(){
 bool check_error_b(bool is_local){
 	bool flag = false;
 
-	string identifier_name = names[pos];
-
+	string curr_name = names[pos];
 	map<string, bool>::iterator iter;  
-
+	// 开始在符号表中查询
 	if (is_local == true){	// 判断局部
-		iter = identifiers_local.find(identifier_name);
+		iter = identifiers_local.find(curr_name);
 		if (iter != identifiers_local.end()){
 			flag = true;
 		}
 
-		if (find(consts_local.begin(), consts_local.end(), identifier_name) != consts_local.end()){
+		if (find(consts_local.begin(), consts_local.end(), curr_name) != consts_local.end()){
 			flag = true;
 		}
 	}
 	else{				// 判断全局
-		iter = functions.find(identifier_name);
+		iter = functions.find(curr_name);
 		if (iter != functions.end()){
 			flag = true;
 		}
-		iter = identifiers.find(identifier_name);
+		iter = identifiers.find(curr_name);
 		if (iter != identifiers.end()){
 			flag = true;
 		}
-		if (find(consts.begin(), consts.end(), identifier_name) != consts.end()){
+		if (find(consts.begin(), consts.end(), curr_name) != consts.end()){
 			flag = true;
 		}
 	}
-
-
+	// 查到说明重定义
 	if (flag){
 		error('b');
-		error_out(identifier_name + "名字重定义");
+		error_out(curr_name + "名字重定义");
 	}
 
 	return flag;
@@ -220,17 +217,15 @@ bool check_error_b(bool is_local){
 
 // 未定义的名字
 bool check_error_c(){
-
 	bool flag = true;
-
 	string identifier_name = names[pos];
-
 	map<string, bool>::iterator iter;  
 	iter = identifiers_local.find(identifier_name);
-	// 先查找局部变量，常量
+	// 先查找局部变量
 	if (iter != identifiers_local.end()){
 		flag = false;
 	}
+	// 再查局部常量
 	else if (find(consts_local.begin(), consts_local.end(), identifier_name) != consts_local.end()){
 		flag = false;
 	}
@@ -1662,7 +1657,7 @@ bool case_table(bool is_return_int, bool is_return_char, bool is_const_int) {
 	flag |= case_sub(is_return_int, is_return_char, is_const_int);
 	
 	Forward();
-	while (token == table["case"]) {
+	if (token == table["case"]) {
 		flag |= case_sub(is_return_int, is_return_char, is_const_int);
 		Forward();
 	}
@@ -1761,7 +1756,7 @@ void value_param_list(string func_name, bool is_duplicated) {
 		map<string, Function>::iterator iter;
 		iter = functions_params.find(func_name);
 
-		// check nums of params
+		// 检查参数
 		if (!(iter->second.checkParamsNum(params))){
 			check_error_d();
 		}
@@ -1855,14 +1850,14 @@ bool return_state(bool is_return_int, bool is_return_char) {
 				}
 				Forward();
 			}else{
-				bool exp_flag =  expression();
+				bool func_return_type =  expression();
 				if (is_return_char == false && is_return_int == false){
 					check_error_g();
 				}
-				else if(exp_flag == false && is_return_int == true){
+				else if(func_return_type == false && is_return_int == true){
 					check_error_h();
 				}
-				else if (exp_flag == true && is_return_char == true){
+				else if (func_return_type == true && is_return_char == true){
 					check_error_h();
 				}
 

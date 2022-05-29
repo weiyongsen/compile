@@ -8,7 +8,7 @@
 
 using namespace std;
 
-void writeIR(vector<fe> &m, map<string,bool> &iden);
+void writefe(vector<fe> &m, map<string,bool> &iden);
 
 int main() {
 	/*vector<vector<string>> tn;
@@ -35,7 +35,7 @@ int main() {
 	for (map<string,bool>::iterator i = identifiers_local.begin(); i !=identifiers_local.end() ;i++){
 		all_iden[i->first] = i->second;
 	}
-	writeIR(m_code, all_iden);
+	writefe(m_code, all_iden);
 
 	for (map<string,bool>::iterator i = all_iden.begin(); i !=all_iden.end() ;i++){
 		cout << i->first << " " << i->second << endl;
@@ -46,7 +46,7 @@ int main() {
 }
 
 
-void writeIR(vector<fe> &m, map<string,bool> &iden){
+void writefe(vector<fe> &m, map<string,bool> &iden){
 	ofstream os;     
 	os.open("mips.txt");
 	// 赋初值
@@ -91,8 +91,6 @@ void writeIR(vector<fe> &m, map<string,bool> &iden){
 						os << m[i].result << ": " << ".word " << m[i].arg1 << endl;
 							iden[name] = 1;
 					}
-
-					
 				}
 			}
 			
@@ -106,7 +104,6 @@ void writeIR(vector<fe> &m, map<string,bool> &iden){
 
 			if(iter != iden.end()){
 				is_int = iter->second;
-
 				// 添加到iden
 				if(is_int){
 					os << m[i].result << ": " << ".word " << "0" << endl;

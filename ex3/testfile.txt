@@ -47,12 +47,10 @@ int func2(char c) {
 }
 
 void main() {
-  char  arr[31][20];
     printf("18373050");
-    func_switch_ch(arr[0][2]);
-    func_switch_int('b');
-    func_switch_int(func2('a'));
-    func2(func2('a'));
+    func_switch_ch(1);
+    func_switch_int();
+    func2();
     printf("--------------------");
 
     printf("ylsyyds! yls 3x speed!");

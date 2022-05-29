@@ -70,8 +70,8 @@ typedef struct four_element
 }fe;
 int temp_num = 0;
 
-vector<fe> middle_code;
-fe f;
+vector<fe> middle_code;	// 存储四元式
+fe f;					// 定义全局变量
 
 vector<string> error_ans;
 vector<string> tokens;
@@ -916,6 +916,7 @@ void variable_def_without_init(bool is_local_defined) {
 
 	Forward();
 	while (token == table[","]) {
+		
 		ADD();
 		Forward();
 		if (token == table["标识符"]) {
@@ -967,7 +968,14 @@ void variable_def_without_init(bool is_local_defined) {
 }
 
 void variable_def_with_init(bool is_local_defined) {
+	f.op = table["="];
+	f.arg1 = "";
+	f.arg2 = "";
+	f.result = "";
+
+	bool flag = false;
 	if (token == table["int"] || token == table["char"]) {
+
 		ADD();
 
 		// 计数匹配
@@ -999,10 +1007,23 @@ void variable_def_with_init(bool is_local_defined) {
 
 		Forward();
 		if (token == table["="]) {
-			ADD();
 
+			ADD();
 			Forward();
+
+			// 判断符号
+			if(tokens[pos-2]==table["+"]){
+				f.arg1 = names[pos + 1];
+			}else if(tokens[pos-2]==table["-"]){
+				f.arg1 = "-" + names[pos + 1];
+			}else{
+				f.arg1 = names[pos];
+			}
+
 			bool const_flag = ICCON();
+			f.result = names[pos];
+			middle_code.emplace_back(f);
+
 			check_error_o((const_flag == true && flag == false)||(const_flag == false && flag == true));
 		}
 		else if (token == table["["]) {
@@ -1348,6 +1369,7 @@ bool expression() {
 		ADD();
 		Forward();
 	}
+
 	flag |= item();
 	// 操作数arg1应该是item刚加入的，结果应该是最新的temp_num形成
 	if(first){
@@ -1368,7 +1390,6 @@ bool expression() {
 		
 
 	//TODO 在item中的temp n 是上面+-号对应的f.arg1
-	
 
 	Forward();
 	while (token == table["+"] || token == table["-"]) {
@@ -1377,7 +1398,7 @@ bool expression() {
 
 		Forward();
 		item();
-		//TODO 瞎写
+		//TODO 拾肆之前item中的中间变量
 		arg1 = "temp" + to_string(temp_num - 2);
 		arg2 = "temp" + to_string(temp_num - 1);
 		result = "temp" + to_string(temp_num);
@@ -1404,6 +1425,7 @@ bool expression() {
 bool item() {
 	string op = table["="], arg1 = "", arg2 = "", result = "";
 	bool flag = false;
+
 	flag |= factor();
 	// 操作数是刚刚factor中加入的，result是最新的temp_num
 	arg1 = "temp" + to_string(temp_num - 1);

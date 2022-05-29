@@ -151,77 +151,49 @@ MAINTK main 49
 LPARENT ( 49
 RPARENT ) 49
 LBRACE { 49
-CHARTK char 50
-IDENFR arr 50
-LBRACK [ 50
-INTCON 31 50
-RBRACK ] 50
-LBRACK [ 50
-INTCON 20 50
-RBRACK ] 50
+PRINTFTK printf 50
+LPARENT ( 50
+STRCON 18373050 50
+RPARENT ) 50
 SEMICN ; 50
-PRINTFTK printf 51
+IDENFR func_switch_ch 51
 LPARENT ( 51
-STRCON 18373050 51
+INTCON 1 51
 RPARENT ) 51
 SEMICN ; 51
-IDENFR func_switch_ch 52
+IDENFR func_switch_int 52
 LPARENT ( 52
-IDENFR arr 52
-LBRACK [ 52
-INTCON 0 52
-RBRACK ] 52
-LBRACK [ 52
-INTCON 2 52
-RBRACK ] 52
 RPARENT ) 52
 SEMICN ; 52
-IDENFR func_switch_int 53
+IDENFR func2 53
 LPARENT ( 53
-CHARCON b 53
 RPARENT ) 53
 SEMICN ; 53
-IDENFR func_switch_int 54
+PRINTFTK printf 54
 LPARENT ( 54
-IDENFR func2 54
-LPARENT ( 54
-CHARCON a 54
-RPARENT ) 54
+STRCON -------------------- 54
 RPARENT ) 54
 SEMICN ; 54
-IDENFR func2 55
-LPARENT ( 55
-IDENFR func2 55
-LPARENT ( 55
-CHARCON a 55
-RPARENT ) 55
-RPARENT ) 55
-SEMICN ; 55
 PRINTFTK printf 56
 LPARENT ( 56
-STRCON -------------------- 56
+STRCON ylsyyds! yls 3x speed! 56
 RPARENT ) 56
 SEMICN ; 56
+PRINTFTK printf 57
+LPARENT ( 57
+STRCON lls,yyds! xdd,yyds! gtc,yyds! 57
+RPARENT ) 57
+SEMICN ; 57
 PRINTFTK printf 58
 LPARENT ( 58
-STRCON ylsyyds! yls 3x speed! 58
+STRCON Cjbbbbbbbbbbbbbbbbbbb! --- The master encourager! 58
 RPARENT ) 58
 SEMICN ; 58
 PRINTFTK printf 59
 LPARENT ( 59
-STRCON lls,yyds! xdd,yyds! gtc,yyds! 59
+STRCON GoodLuck, may the encourager be with you!( 59
 RPARENT ) 59
 SEMICN ; 59
-PRINTFTK printf 60
-LPARENT ( 60
-STRCON Cjbbbbbbbbbbbbbbbbbbb! --- The master encourager! 60
-RPARENT ) 60
-SEMICN ; 60
-PRINTFTK printf 61
-LPARENT ( 61
-STRCON GoodLuck, may the encourager be with you!( 61
-RPARENT ) 61
+RETURNTK return 61
 SEMICN ; 61
-RETURNTK return 63
-SEMICN ; 63
-RBRACE } 64
+RBRACE } 62
